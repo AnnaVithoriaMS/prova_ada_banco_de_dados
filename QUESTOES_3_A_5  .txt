@@ -1,0 +1,23 @@
+-- QUESTÃO 3
+SELECT nome as Produto,
+	  preco as Valor
+FROM produtos p
+WHERE p.preco > 100
+ORDER BY 2,1
+
+--QUESTÃO 04
+
+SELECT id as ID,
+		preco as Valor
+FROM produtos p
+WHERE p.preco > (SELECT avg(preco)
+				FROM produtos)
+
+--QUESTÃO 5
+
+SELECT categorias.nome,
+	avg(produtos.preco)
+FROM categorias , produtos , produtos_categorias 
+WHERE produtos_categorias.produto_id = produtos.id AND produtos_categorias.categoria_id = categorias.id
+GROUP BY categorias.nome
+ORDER BY 1
